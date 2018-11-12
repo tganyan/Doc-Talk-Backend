@@ -24,7 +24,6 @@ const OPEN_ID_URL = 'https://www.googleapis.com/plus/v1/people/me/openIdConnect'
 // ============================================================================
 router.post('/api/signup', jsonParser, (request, response, next) => {
   console.log('REQUEST BODY', request.body);
-  const idToUser = 0;
   if (!request.body.password) {
     return next(new HttpError(401, ''));
   }
@@ -32,15 +31,13 @@ router.post('/api/signup', jsonParser, (request, response, next) => {
   return Account.create(request.body.username, request.body.email, request.body.password)
     .then((createdAccount) => {
       delete request.body.password;
-      return createdAccount;
+      return createdAccount.pCreateToken();
     })
-    .save()
     .then((token) => {
       logger.log(logger.INFO, 'Responding with a 200 status code and a token');
       return response.json(
         {
           token,
-          id: idToUser,
         },
       );
     })
