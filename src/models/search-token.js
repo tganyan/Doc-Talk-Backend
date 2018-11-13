@@ -23,9 +23,7 @@ const searchToken = mongoose.Schema({
 const SearchToken = module.exports = mongoose.model('searchToken', searchToken);
 
 SearchToken.save = (token, expTimeOffset) => {
-  const expTime = Math.floor(new Date().getTime() / 1000) + expTimeOffset;
-  return new SearchToken({
-    token,
-    expTime,
-  }).save();
+  const expTimeData = Math.floor(new Date().getTime() / 1000) + expTimeOffset;
+  const tokenData = token;
+  return SearchToken.findByIdAndUpdate('5bea51088c2d470a50eb2730', { token: tokenData, expTime: expTimeData });
 };
