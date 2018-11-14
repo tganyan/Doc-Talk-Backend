@@ -12,7 +12,7 @@
   "scripts": {
     "test": "eslint . && jest --coverage --forceExit --runInBand",
     "lint": "eslint .",
-    "dbDevOn": "mkdir -p ./testdb && mongod --dbpath ./testdb",
+    "dbDevOn": "mkdir testdb && mongod --dbpath testdb",
     "dbOn": "mkdir db && mongod --dbpath db",
     "dbOff": "killall mongod",
     "start": "node src/main.js"
@@ -27,6 +27,7 @@
   "license": "ISC",
   "devDependencies": {
     "crypto-js": "^3.1.9-1",
+    "cryptojs": "^2.5.3",
     "eslint": "^5.5.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",

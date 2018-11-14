@@ -36,6 +36,14 @@ router.get('/oauth/medic_api/tokenRefresh', (request, response) => {
 });
 
 router.get('/oauth/medic_api/token', () => {
-  const token = SearchTokenModel.get();
-  return token;
+  // const token = SearchTokenModel.get();
+  // console.log('this is the log from search-token-router', token);
+  // return token;
+  // return SearchTokenModel.get()
+  //   .then((response) => {
+  //     const token = response.body;
+  //     console.log('this is the log from search-token-router', token);
+  //   });
+
+  console.log(SearchTokenModel.get());
 });
