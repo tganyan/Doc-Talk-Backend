@@ -1,4 +1,4 @@
-'use strict';
+'usestrict';
 
 require('dotenv').config();
 
@@ -17,7 +17,7 @@ const MEDIC_API_SECRET = process.env.MEDIC_API_SECRET;
 const computedHash = CryptoJS.HmacMD5(MEDIC_API_LOGIN, MEDIC_API_SECRET);
 const computedHashString = computedHash.toString(CryptoJS.enc.Base64);
 
-router.get('/oauth/medic_api', (request, response) => {
+router.get('/oauth/medic_api/tokenRefresh', (request, response) => {
   return superagent.post(MEDIC_API_LOGIN)
     .set('Authorization', `Bearer ${MEDIC_API_KEY}:${computedHashString}`)
     .then((tokenResponse) => {
@@ -33,4 +33,9 @@ router.get('/oauth/medic_api', (request, response) => {
       console.error(error);
       response.redirect(CLIENT_URL);
     });
+});
+
+router.get('/oauth/medic_api/token', () => {
+  const token = SearchTokenModel.get();
+  return token;
 });

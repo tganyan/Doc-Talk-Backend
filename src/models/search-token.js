@@ -27,3 +27,13 @@ SearchToken.save = (token, expTimeOffset) => {
   const tokenData = token;
   return SearchToken.findByIdAndUpdate('5bea51088c2d470a50eb2730', { token: tokenData, expTime: expTimeData });
 };
+
+SearchToken.get = () => {
+  SearchToken.findOne({ _id: '5bea51088c2d470a50eb2730' })
+    .then((token) => {
+      console.log(token);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
