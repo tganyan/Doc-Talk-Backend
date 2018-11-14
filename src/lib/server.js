@@ -8,6 +8,7 @@ const errorMiddleware = require('./middleware/error-middleware');
 const loggerMiddleware = require('./middleware/logger-middleware');
 const logger = require('./logger');
 const authRouter = require('../routes/auth-router');
+const searchTokenRouter = require('../routes/search-token-router')
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(errorMiddleware);
 app.use(loggerMiddleware);
 app.use(authRouter);
+app.use(searchTokenRouter);
 
 app.all('*', (request, response) => {
   logger.log(logger.INFO, 'Returning a 404 error from catch-all route');
