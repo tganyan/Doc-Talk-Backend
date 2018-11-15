@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const HttpError = require('http-errors');
+const HttpError = require('http-errors'); // eslint-disable-line
 
 const searchToken = mongoose.Schema({
   token: {
@@ -23,19 +23,20 @@ const searchToken = mongoose.Schema({
 const SearchToken = module.exports = mongoose.model('searchToken', searchToken);
 
 SearchToken.save = (token, expTimeOffset) => {
-  const expTimeData = Math.floor(new Date().getTime() / 1000) + expTimeOffset;
+  const expTimeData = Math.floor(new Date().getTime() / 1000) + expTimeOffset - 10;
   const tokenData = token;
-  return SearchToken.findByIdAndUpdate('5bec6e69687fce1d188f3baa', { token: tokenData, expTime: expTimeData });
+  return SearchToken.findByIdAndUpdate('5beccf47bf75513b1c4bc3fe', { token: tokenData, expTime: expTimeData });
 };
 
 SearchToken.get = () => {
-  SearchToken.findOne({ _id: '5bec6e69687fce1d188f3baa' })
+  // SearchToken.findById('5beccf47bf75513b1c4bc3fe', (err, ad) => {
+  //   return ad;
+  // });
+  // /*
+  return SearchToken.findOne({ _id: '5beccf47bf75513b1c4bc3fe' })
     .then((token) => {
-      console.log('this is the log from search-token', token);
+      console.log(token);
       return token;
-    })
-    .then((returnedToken) => {
-      return returnedToken;
     })
     .catch((error) => {
       console.log(error);
