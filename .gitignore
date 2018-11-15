@@ -3,6 +3,7 @@
 
 .idea
 db/
+testdb/
 
 ### macOS ###
 # General
