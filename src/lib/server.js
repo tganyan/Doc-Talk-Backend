@@ -8,7 +8,7 @@ const errorMiddleware = require('./middleware/error-middleware');
 const loggerMiddleware = require('./middleware/logger-middleware');
 const logger = require('./logger');
 const authRouter = require('../routes/auth-router');
-const searchTokenRouter = require('../routes/search-token-router')
+const searchTokenRouter = require('../routes/search-token-router');
 
 const app = express();
 
