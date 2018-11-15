@@ -17,7 +17,7 @@ Once submitted, your possible conditions will populate on our site.
 _If you are suffering from anything that seems major PLEASE go to the hospital/ER. Receiving a proper medical diagnosis
 can only be done by a medical professional. Our site should only be used to help you get a possible general idea of what you may have._
 
-## Token Logic
+### Token Logic
 
 A token received from the API will expire after two hours, so when clicking the submit button for the diagnosis form we must check the token stored in our database to see if it has expired. We send a GET request to the /oauth/medic_api/token route, and receive our stored token object, such as this.
 ```
