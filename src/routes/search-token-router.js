@@ -1,4 +1,4 @@
-'usestrict';
+'use strict';
 
 require('dotenv').config();
 
@@ -10,10 +10,10 @@ const router = module.exports = new express.Router();
 const SearchTokenModel = require('../models/search-token');
 
 const CLIENT_URL = 'http://localhost:8080';
-const MEDIC_API_LOGIN = process.env.MEDIC_API_LOGIN;
-const MEDIC_API_KEY = process.env.MEDIC_API_KEY;
-const API_URL = 'http://localhost:4000/oauth/google';
-const MEDIC_API_SECRET = process.env.MEDIC_API_SECRET;
+const MEDIC_API_LOGIN = process.env.MEDIC_API_LOGIN;  // eslint-disable-line
+const MEDIC_API_KEY = process.env.MEDIC_API_KEY; // eslint-disable-line
+const API_URL = 'http://localhost:4000/oauth/google'; // eslint-disable-line
+const MEDIC_API_SECRET = process.env.MEDIC_API_SECRET; // eslint-disable-line
 const computedHash = CryptoJS.HmacMD5(MEDIC_API_LOGIN, MEDIC_API_SECRET);
 const computedHashString = computedHash.toString(CryptoJS.enc.Base64);
 
@@ -27,23 +27,26 @@ router.get('/oauth/medic_api/tokenRefresh', (request, response) => {
       }
       const searchToken = tokenResponse.body.Token;
       const searchTokenExp = tokenResponse.body.ValidThrough;
-      return SearchTokenModel.save(searchToken, searchTokenExp);
+      return SearchTokenModel.save(searchToken, searchTokenExp)
+        .then((receivedToken) => {
+          response.status(200)
+            .send(receivedToken);
+        })
+        .catch((error) => {
+          console.error(error);
+          response.redirect(CLIENT_URL);
+        });
+    });
+});
+
+router.get('/oauth/medic_api/token', (request, response) => {
+  return SearchTokenModel.get()
+    .then((receivedToken) => {
+      response.status(200)
+        .send(receivedToken);
     })
     .catch((error) => {
       console.error(error);
       response.redirect(CLIENT_URL);
     });
-});
-
-router.get('/oauth/medic_api/token', () => {
-  // const token = SearchTokenModel.get();
-  // console.log('this is the log from search-token-router', token);
-  // return token;
-  // return SearchTokenModel.get()
-  //   .then((response) => {
-  //     const token = response.body;
-  //     console.log('this is the log from search-token-router', token);
-  //   });
-
-  console.log(SearchTokenModel.get());
 });
