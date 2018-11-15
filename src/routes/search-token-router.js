@@ -27,11 +27,15 @@ router.get('/oauth/medic_api/tokenRefresh', (request, response) => {
       }
       const searchToken = tokenResponse.body.Token;
       const searchTokenExp = tokenResponse.body.ValidThrough;
-      return SearchTokenModel.save(searchToken, searchTokenExp);
-    })
-    .catch((error) => {
-      console.error(error);
-      response.redirect(CLIENT_URL);
+      return SearchTokenModel.save(searchToken, searchTokenExp)
+        .then((receivedToken) => {
+          response.status(200)
+            .send(receivedToken);
+        })
+        .catch((error) => {
+          console.error(error);
+          response.redirect(CLIENT_URL);
+        });
     });
 });
 
@@ -40,5 +44,9 @@ router.get('/oauth/medic_api/token', (request, response) => {
     .then((receivedToken) => {
       response.status(200)
         .send(receivedToken);
+    })
+    .catch((error) => {
+      console.error(error);
+      response.redirect(CLIENT_URL);
     });
 });

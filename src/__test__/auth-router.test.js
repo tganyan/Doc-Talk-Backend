@@ -47,22 +47,33 @@ describe('auth-router.js', () => {
         expect(response.status).toEqual(401);
       });
   });
-  // test('Testing if a 200 and a token is sent on successful login', () => {
-  //   return mockAccount.pCreateMock()
-  //     .then((mock) => {
-  //       return superagent.get(`${API_URL}/api/login`)
-  //         .auth(mock.request.username, mock.request.password);
-  //     })
-  //     .then((response) => {
-  //       expect(response.status).toEqual(200);
-  //       expect(response.body.token).toBeTruthy();
-  //     });
-  // });
-  test('Testing if a 400 is sent if login fails (incorrect or no password or username)', () => {
+  test('Testing if a 200 and a token is sent on successful login', () => {
+    return mockAccount.pCreateMock()
+      .then((mock) => {
+        return superagent.get(`${API_URL}/api/login`)
+          .auth(mock.request.username, mock.request.password);
+      })
+      .then((response) => {
+        expect(response.status).toEqual(200);
+        expect(response.body.token).toBeTruthy();
+      });
+  });
+  test('Testing if a 400 is sent if login fails (incorrect or no password)', () => {
     return mockAccount.pCreateMock()
       .then((mock) => {
         return superagent.get(`${API_URL}/api/login`)
           .auth(mock.request.username, 'bad-password');
+      })
+      .then(Promise.reject)
+      .catch((response) => {
+        expect(response.status).toEqual(400);
+      });
+  });
+  test('Testing if a 400 is sent if login fails (incorrect or no username)', () => {
+    return mockAccount.pCreateMock()
+      .then((mock) => {
+        return superagent.get(`${API_URL}/api/login`)
+          .auth('Ricky Bobby', mock.request.password);
       })
       .then(Promise.reject)
       .catch((response) => {
