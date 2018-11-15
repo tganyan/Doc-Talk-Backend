@@ -73,7 +73,7 @@ Please feel free to contribute. Master branch auto merge locked for approval for
 ## Local Machine
 
 * Clone repo, run -npm install
-* Clone back-end repo (https://github.com/tganyan/Doc-Talk-Backend), run -npm install
+* Clone front-end repo (https://github.com/tganyan/Doc-Talk-Frontend), run -npm install
 * On back-end, run database, -npm run dbOn
 * On back-end, run server, -npm run start
 * On front-end, open localhost, - npm run watch
