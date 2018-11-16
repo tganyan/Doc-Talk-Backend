@@ -19,6 +19,7 @@ describe('testing search-token-router', () => {
           .toEqual(200);
       });
   });
+
   test('testing that when token is called the existing token is returned - should return isValid = true', () => {
     return superagent.get(`${API_URL}/oauth/medic_api/token`)
       .then((getResponse) => {

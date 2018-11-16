@@ -2,7 +2,6 @@
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const HttpError = require('http-errors'); // eslint-disable-line
 
 const searchToken = mongoose.Schema({
   token: {
@@ -29,10 +28,6 @@ SearchToken.save = (token, expTimeOffset) => {
 };
 
 SearchToken.get = () => {
-  // SearchToken.findById('5beccf47bf75513b1c4bc3fe', (err, ad) => {
-  //   return ad;
-  // });
-  // /*
   return SearchToken.findOne({ _id: '5bedb08fd7922b41e009792a' })
     .then((token) => {
       console.log(token);

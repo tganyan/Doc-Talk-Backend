@@ -9,6 +9,7 @@ module.exports = (request, response, next) => {
   }
 
   const base64Header = request.headers.authorization.split('Basic ')[1];
+
   if (!base64Header) {
     return next(new HttpError(400, 'INVALID AUTHORIZATION'));
   }

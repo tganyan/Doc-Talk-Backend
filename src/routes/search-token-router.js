@@ -14,6 +14,7 @@ const MEDIC_API_LOGIN = process.env.MEDIC_API_LOGIN;  // eslint-disable-line
 const MEDIC_API_KEY = process.env.MEDIC_API_KEY; // eslint-disable-line
 const API_URL = 'http://localhost:4000/oauth/google'; // eslint-disable-line
 const MEDIC_API_SECRET = process.env.MEDIC_API_SECRET; // eslint-disable-line
+
 const computedHash = CryptoJS.HmacMD5(MEDIC_API_LOGIN, MEDIC_API_SECRET);
 const computedHashString = computedHash.toString(CryptoJS.enc.Base64);
 

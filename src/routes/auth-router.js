@@ -3,7 +3,6 @@
 require('dotenv').config();
 
 const express = require('express');
-// const superagent = require('superagent');
 const bodyParser = require('body-parser');
 const HttpError = require('http-errors');
 const logger = require('../lib/logger');
@@ -58,42 +57,3 @@ router.get('/api/login', basicAccountMiddleware, (request, response, next) => {
     })
     .catch(next);
 });
-
-// ===============================+=============================================
-// GOOGLE LOG-IN
-// ============================================================================
-// router.get('/oauth/google', (request, response) => {
-//   if (!request.query.code) {
-//     response.redirect(CLIENT_URL);
-//   } else {
-//     return superagent.post(GOOGLE_BACKEND)
-//       .type('form')
-//       .send({
-//         code: request.query.code,
-//         grant_type: 'authorization_code',
-//         client_id: process.env.CLIENT_ID,
-//         client_secret: process.env.CLIENT_SECRET,
-//         redirect_uri: API_URL,
-//       })
-//       .then((tokenResponse) => {
-//         if (!tokenResponse.body.access_token) {
-//           response.redirect(CLIENT_URL);
-//         }
-//
-//         const googleToken = tokenResponse.body.access_token;
-//
-//         return superagent.get(OPEN_ID_URL)
-//           .set('Authorization', `Bearer ${googleToken}`);
-//       })
-//       .then((openIdResponse) => {
-//
-//         console.log(openIdResponse.body);
-//         response.cookie('DOCTALK-OAUTH-TOKEN', 'You have been prescribed this token');
-//         response.redirect(CLIENT_URL);
-//       })
-//       .catch((error) => {
-//         console.error(error);
-//         response.redirect(CLIENT_URL);
-//       });
-//   }
-// });
