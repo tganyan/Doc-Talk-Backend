@@ -10,7 +10,7 @@
 - Doc-Talk is an app that's been created to allow users to possibly self-diagnosis their own condition. Our site is easy to use, we do require
 you to make an account. Once logged in, fill out our simple form which includes your possible symptoms, age and gender.
 Once submitted, your possible conditions will populate on our site.
-- We are using [**ApiMedic**](https://apimedic.com/) which is a 'medical symptom checker' specifically for patients.
+- We are using [*.*ApiMedic**](https://apimediccom/) which is a 'medical symptom checker' specifically for patients.
 
 
 ### Disclaimer
@@ -75,7 +75,7 @@ Please feel free to contribute. Master branch auto merge locked for approval for
 ### To open the application:
 
 * Clone repo, run -npm install
-* Clone back-end repo (https://github.com/tganyan/Doc-Talk-Backend), run -npm install
+* Clone front-end repo (https://github.com/tganyan/Doc-Talk-Frontend), run -npm install
 * On back-end, run database, -npm run dbOn
 * On back-end, run server, -npm run start
 * On front-end, open localhost, - npm run watch
