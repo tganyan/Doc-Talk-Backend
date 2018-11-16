@@ -19,10 +19,13 @@ module.exports = (request, response, next) => {
   if (!request.headers.authorization) {
     return next(new HttpError(400, 'INVALID AUTHORIZATION'));
   }
+
   const token = request.headers.authorization.split('Bearer ')[1];
+
   if (!token) {
     return next(new HttpError(400, 'INVALID AUTHORIZATION'));
   }
+
   return promiseTechnique(jsonWebToken.verify)(token, process.env.SECRET)
     .then((decryptedToken) => {
       return Account.findOne({ tokenSeed: decryptedToken.tokenSeed });

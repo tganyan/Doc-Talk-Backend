@@ -3,7 +3,6 @@
 const faker = require('faker');
 const Account = require('../../models/account');
 
-
 const accountMock = {};
 
 accountMock.pCreateMock = () => {
