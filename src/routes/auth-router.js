@@ -55,5 +55,5 @@ router.get('/api/login', basicAccountMiddleware, (request, response, next) => {
       logger.log(logger.INFO, 'responding with 200 status code and a token');
       return response.json({ token });
     })
-    .catch(next);
+    .catch(error => next(error));
 });
