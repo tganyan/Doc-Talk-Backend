@@ -25,15 +25,11 @@ const SearchToken = module.exports = mongoose.model('searchToken', searchToken);
 SearchToken.save = (token, expTimeOffset) => {
   const expTimeData = Math.floor(new Date().getTime() / 1000) + expTimeOffset - 10;
   const tokenData = token;
-  return SearchToken.findByIdAndUpdate('5bedb08fd7922b41e009792a', { token: tokenData, expTime: expTimeData });
+  return SearchToken.findByIdAndUpdate('5bee0f61fb6fc0561ff9a491', { token: tokenData, expTime: expTimeData });
 };
 
 SearchToken.get = () => {
-  // SearchToken.findById('5beccf47bf75513b1c4bc3fe', (err, ad) => {
-  //   return ad;
-  // });
-  // /*
-  return SearchToken.findOne({ _id: '5bedb08fd7922b41e009792a' })
+  return SearchToken.findOne({ _id: '5bee0f61fb6fc0561ff9a491' })
     .then((token) => {
       console.log(token);
       return token;
